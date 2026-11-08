@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Levi Kurtright: enterprise AI delivery and Revenue Cloud architect. Two voice AI agents that quote, bill, tax, credit and recover payments on Stripe Billing, with an automated test suite.">
+<meta property="og:title" content="Levi Kurtright">
+<meta property="og:description" content="Levi Kurtright: enterprise AI delivery and Revenue Cloud architect. Two voice AI agents that quote, bill, tax, credit and recover payments on Stripe Billing, with an automated test suite.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://levi-kurtright.github.io/">
+<title>Levi Kurtright</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Portfolio of a senior enterprise AI leader. Dark-primary, teal(Quinn)/amber(Riley) project identities.
+   Scales as a grid of project cards; voice agents are featured work with code links + technical case studies. */
+:root{
+  --bg:#0b0e13; --bg2:#0e1219; --panel:#141924; --panel2:#1a2030; --ink:#eef0f5; --mut:#99a2b2; --faint:#6b7486;
+  --line:#232a37; --line2:#1b222d;
+  --accent:#34d6c4; --quinn:#4fd6cb; --quinn-soft:#112a2c; --riley:#eaad52; --riley-soft:#2a2113;
+  --stripe:#9b93ff; --stripe-soft:#1e1d36;
+  --body:"Hanken Grotesk",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 44px -24px rgba(0,0,0,.85);
+  --maxw:1080px; color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f4f2ec; --bg2:#faf9f5; --panel:#ffffff; --panel2:#f6f4ee; --ink:#15171c; --mut:#56607a; --faint:#8a92a4;
+  --line:#e6e2d7; --line2:#efece3;
+  --accent:#0d7a6f; --quinn:#0c7b86; --quinn-soft:#e2f0f1; --riley:#a85f00; --riley-soft:#f6ebd9;
+  --stripe:#5146d8; --stripe-soft:#ecebfc;
+  --shadow:0 1px 2px rgba(20,23,28,.04),0 10px 30px -16px rgba(20,23,28,.16); color-scheme:light;
+}}
+:root[data-theme="light"]{
+  --bg:#f4f2ec; --bg2:#faf9f5; --panel:#ffffff; --panel2:#f6f4ee; --ink:#15171c; --mut:#56607a; --faint:#8a92a4;
+  --line:#e6e2d7; --line2:#efece3;
+  --accent:#0d7a6f; --quinn:#0c7b86; --quinn-soft:#e2f0f1; --riley:#a85f00; --riley-soft:#f6ebd9;
+  --stripe:#5146d8; --stripe-soft:#ecebfc;
+  --shadow:0 1px 2px rgba(20,23,28,.04),0 10px 30px -16px rgba(20,23,28,.16); color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0b0e13; --bg2:#0e1219; --panel:#141924; --panel2:#1a2030; --ink:#eef0f5; --mut:#99a2b2; --faint:#6b7486;
+  --line:#232a37; --line2:#1b222d;
+  --accent:#34d6c4; --quinn:#4fd6cb; --quinn-soft:#112a2c; --riley:#eaad52; --riley-soft:#2a2113;
+  --stripe:#9b93ff; --stripe-soft:#1e1d36; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 560px at 84% -10%, color-mix(in srgb,var(--quinn) 13%, transparent), transparent 60%),
+    radial-gradient(1000px 520px at 6% 2%, color-mix(in srgb,var(--riley) 10%, transparent), transparent 55%),
+    var(--bg);
+  color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{margin:0;line-height:1.12;letter-spacing:-.02em;text-wrap:balance;font-weight:800}
+p{margin:0}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:.86em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:0;background:var(--panel);color:var(--ink);padding:10px 14px;border-radius:8px;z-index:50}
+.skip:focus{left:12px;top:12px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.eyebrow::before{content:"";width:22px;height:1px;background:currentColor;opacity:.55}
+
+/* header */
+header.bar{border-bottom:1px solid var(--line2)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
+.bar .me{font-family:var(--mono);font-size:.82rem;color:var(--ink);font-weight:500}
+.bar nav{display:flex;gap:20px;font-size:.9rem}
+.bar nav a{color:var(--mut)} .bar nav a:hover{color:var(--ink);text-decoration:none}
+@media(max-width:620px){.bar nav a.hideable{display:none}}
+
+/* hero */
+.hero{padding-block:clamp(48px,8vw,96px) clamp(30px,5vw,52px)}
+.hero h1{font-size:clamp(2.1rem,4.8vw,3.25rem);margin-top:18px;max-width:22ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{font-size:clamp(1.05rem,2.3vw,1.28rem);color:var(--mut);max-width:60ch;margin-top:20px}
+.hero .lede b{color:var(--ink);font-weight:600}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.stat{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:1.05rem;font-weight:800} .stat span{font-size:.76rem;color:var(--mut)}
+.wave{display:flex;align-items:flex-end;gap:5px;height:34px;margin-top:30px;max-width:230px}
+.wave i{flex:1;border-radius:3px;background:linear-gradient(180deg,var(--quinn),var(--riley));height:30%;opacity:.8}
+@media (prefers-reduced-motion:no-preference){.wave i{animation:eq 1.3s ease-in-out infinite}}
+.wave i:nth-child(2n){animation-delay:-.6s}.wave i:nth-child(3n){animation-delay:-.3s}.wave i:nth-child(5n){animation-delay:-.9s}.wave i:nth-child(7n){animation-delay:-.15s}
+@keyframes eq{0%,100%{height:20%}50%{height:92%}}
+
+/* section scaffold */
+section{padding-block:clamp(30px,6vw,60px)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px}
+.sec-head h2{font-size:clamp(1.5rem,3.4vw,2.1rem)}
+.sec-head p{color:var(--mut);max-width:52ch}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:18px;font-size:.8rem;color:var(--mut)}
+.tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--line)}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%}
+.tag.live{color:var(--accent)} .tag.live::before{background:var(--accent)}
+.tag.demo{color:var(--riley)} .tag.demo::before{background:var(--riley)}
+.tag.plan{color:var(--faint)} .tag.plan::before{background:var(--faint)}
+.tag.stripe{color:var(--stripe)} .tag.stripe::before{background:var(--stripe)}
+
+/* project grid (scalable) */
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px;align-items:stretch}
+@media(max-width:780px){.projects{grid-template-columns:1fr}}
+.project{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:16px;min-width:0;box-shadow:var(--shadow);overflow:hidden}
+@media(max-width:480px){.project{padding:20px}}
+.project::before{content:"";position:absolute;inset:0 0 auto;height:4px}
+.project.q::before{background:linear-gradient(90deg,var(--quinn),transparent)}
+.project.r::before{background:linear-gradient(90deg,var(--riley),transparent)}
+.ptop{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.kind{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.q .kind{background:var(--quinn-soft);color:var(--quinn)} .r .kind{background:var(--riley-soft);color:var(--riley)}
+.project h3{font-size:1.95rem}
+.project .role{color:var(--mut);margin-top:-6px}
+.project .desc{font-size:.97rem}@media(min-width:781px){.project .desc{min-height:6.6em}}
+.project .desc b{color:var(--ink);font-weight:700}
+.demo{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1px solid var(--line2);border-radius:15px;padding:15px 16px;background:var(--bg2)}
+.cta{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;font:700 1rem/1 var(--body);color:#06201e;padding:13px 19px;border-radius:12px}
+.q .cta{background:var(--quinn)} .r .cta{background:var(--riley)}
+.cta .dot{width:9px;height:9px;border-radius:50%;background:#06201e;position:relative}
+.r .cta,.r .cta .dot{color:#2a1c04}
+@media (prefers-reduced-motion:no-preference){.cta .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid currentColor;opacity:.5;animation:ping 1.9s ease-out infinite}}
+@keyframes ping{0%{transform:scale(.6);opacity:.6}100%{transform:scale(1.9);opacity:0}}
+.demo small{color:var(--mut);font-size:.78rem;max-width:30ch}
+.transcript{font-family:var(--mono);font-size:.8rem;line-height:1.75;background:var(--bg2);border:1px solid var(--line2);border-radius:13px;padding:15px;overflow-x:auto;white-space:pre}
+.transcript .you{color:var(--mut)} .transcript .sq{color:var(--quinn)} .transcript .sr{color:var(--riley)} .transcript .st{color:var(--stripe)}
+
+/* case study */
+.case{border-top:1px solid var(--line2);padding-top:14px;margin-top:auto}
+.case>summary{cursor:pointer;font-weight:700;font-size:.95rem;list-style:none;display:flex;align-items:center;gap:9px}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary::before{content:"›";font-family:var(--mono);transition:transform .2s;color:var(--mut)}
+.case[open]>summary::before{transform:rotate(90deg)}
+.csgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;margin-top:16px}
+@media(max-width:560px){.csgrid{grid-template-columns:1fr}}
+.cs{min-width:0}
+.cs h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:500;margin-bottom:6px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.cs h4 .mini{font-size:.6rem;padding:2px 7px}
+.cs p,.cs ul{font-size:.88rem;color:var(--ink);margin:0}
+.cs ul{padding-left:1.1em} .cs li{margin:3px 0}
+.cs.full{grid-column:1/-1}
+.techrow{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:var(--mono);font-size:.72rem;color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:5px 9px}
+.chip.st{color:var(--stripe);border-color:color-mix(in srgb,var(--stripe) 40%,var(--line));background:var(--stripe-soft)}
+
+/* "more work" card */
+.more{display:flex;flex-direction:column;justify-content:center;gap:12px;border:1px dashed var(--line);background:transparent;box-shadow:none}
+.more h3{font-size:1.4rem} .more p{color:var(--mut);font-size:.92rem}
+.more .lnk{font-weight:700}
+
+/* quote-to-cash loop */
+.q2c .lede{color:var(--mut);max-width:64ch;margin-top:12px;font-size:1.05rem}
+.q2c .lede b{color:var(--ink)}
+.loop{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:step}
+@media(max-width:900px){.loop{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.loop{grid-template-columns:1fr}}
+.step{counter-increment:step;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);min-width:0;display:flex;flex-direction:column;gap:6px}
+.step::before{content:counter(step,decimal-leading-zero);font-family:var(--mono);font-size:.7rem;color:var(--faint)}
+.step .who{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.who.q{background:var(--quinn-soft);color:var(--quinn)}
+.who.r{background:var(--riley-soft);color:var(--riley)}
+.who.s{background:var(--stripe-soft);color:var(--stripe)}
+.step h3{font-size:1.06rem;font-weight:700;letter-spacing:-.01em}
+.step p{font-size:.85rem;color:var(--mut)}
+.step .proof{margin-top:auto;padding-top:8px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.7rem;color:var(--ink);overflow-wrap:anywhere}
+.loop-sub{margin-top:28px;font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.note{margin-top:16px;font-family:var(--mono);font-size:.74rem;color:var(--mut);border:1px dashed var(--line);border-radius:11px;padding:11px 13px;background:var(--bg2)}
+
+/* approach + diagram */
+.approach .lede{color:var(--mut);max-width:64ch;margin-top:12px;font-size:1.05rem}
+.approach .lede b{color:var(--ink)}
+.diagram{margin:24px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;overflow-x:auto;box-shadow:var(--shadow)}
+.dg{width:100%;height:auto;display:block;min-width:700px}
+.dg .t{font:700 15px var(--body);fill:var(--ink)}
+.dg .tb{font:700 14px var(--body);fill:var(--ink)}
+.dg .s{font:400 11px var(--mono);fill:var(--mut)}
+.dg .s.st{fill:var(--stripe)}
+.dg .l{font:500 10.5px var(--mono);fill:var(--mut);letter-spacing:.04em}
+.dg .box{fill:var(--bg2);stroke:var(--line);stroke-width:1.5}
+.dg .box.hi{stroke:var(--accent);stroke-width:2}
+.dg .e{stroke:var(--mut);stroke-width:1.6;fill:none}
+.dg .e.br{stroke:var(--riley);stroke-width:1.6;stroke-dasharray:5 4;fill:none}
+.dg .lm{fill:var(--panel)}
+.dg .sp{fill:var(--stripe-soft);stroke:color-mix(in srgb,var(--stripe) 45%,var(--line));stroke-width:1.5}
+.dg .t.st,.dg .l.st{fill:var(--stripe)}
+.dg .ch{font:700 13px var(--body)} .dg .ch.q{fill:var(--quinn)} .dg .ch.r{fill:var(--riley)} .dg .ch.s{fill:var(--stripe)}
+.dg .it{font:400 12.5px var(--body);fill:var(--ink)}
+.dg .dq{fill:var(--quinn)} .dg .dr{fill:var(--riley)} .dg .ds{fill:var(--stripe)}
+.dg .e.wh{stroke:var(--stripe)}
+.diagram figcaption{margin-top:14px;font-size:.88rem;color:var(--mut);max-width:72ch}
+.pillrow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+@media(max-width:640px){.pillrow{grid-template-columns:1fr 1fr}}
+.pill{font-size:.88rem;border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--panel);box-shadow:var(--shadow)}
+.pill b{display:block;color:var(--accent);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+
+/* enterprise impact */
+.impact .lede{color:var(--mut);max-width:64ch;margin-top:12px;font-size:1.05rem}
+.impactgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+@media(max-width:720px){.impactgrid{grid-template-columns:1fr}}
+.ic{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow);min-width:0}
+.ic .lab{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.ic h3{font-size:1.06rem;font-weight:700;letter-spacing:-.01em}
+.ic p{color:var(--mut);font-size:.92rem;margin-top:7px}
+.tcap{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:-8px}
+
+/* about */
+.about .inner{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,40px);display:grid;grid-template-columns:1.5fr 1fr;gap:32px;box-shadow:var(--shadow)}
+@media(max-width:780px){.about .inner{grid-template-columns:1fr}}
+.about h2{font-size:1.6rem;margin-top:12px}
+.about p{color:var(--mut);margin-top:14px;max-width:56ch}
+.about p b{color:var(--ink)}
+.disc{font-family:var(--mono);font-size:.72rem;color:var(--mut);border:1px dashed var(--line);border-radius:11px;padding:11px 13px;margin-top:16px;background:var(--bg2)}
+.links{display:flex;flex-direction:column;gap:10px;align-self:center}
+.links a{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:13px;padding:13px 16px;color:var(--ink);font-weight:600;background:var(--bg2)}
+.links a:hover{border-color:var(--accent);text-decoration:none}
+.links span{font-family:var(--mono);font-size:.72rem;color:var(--mut);margin-left:auto}
+footer{border-top:1px solid var(--line2);color:var(--mut);font-size:.84rem;padding-block:22px 42px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="me">Levi Kurtright</div>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#quote-to-cash" class="hideable">Quote-to-cash</a>
+      <a href="#quality" class="hideable">Quality</a>
+      <a href="#impact" class="hideable">Impact</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/levi-kurtright" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top" aria-labelledby="h-title">
+    <div class="eyebrow">Enterprise AI delivery &amp; transformation leader</div>
+    <h1 id="h-title">Enterprise AI that goes <em>beyond conversation.</em></h1>
+    <p class="lede">20+ years taking how companies quote, bill, and serve customers from executive strategy to production systems. Enterprise architecture, applied AI, and hands-on engineering in one person. Below is working proof: <b>two voice agents that quote, discount, and tax an order, bill it as a subscription or by usage, sell prepaid credit, issue credits, recover failed card payments, and explain every charge on Stripe Billing</b>, with an automated test suite behind them.</p>
+    <div class="stats">
+      <div class="stat"><b>$95M+</b><span>programs delivered</span></div>
+      <div class="stat"><b>$55M+</b><span>troubled programs recovered</span></div>
+      <div class="stat"><b>40+</b><span>architects developed</span></div>
+    </div>
+    <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </section>
+
+  <section id="work" aria-labelledby="h-work">
+    <div class="sec-head">
+      <h2 id="h-work">Featured work</h2>
+      <p>Applied AI I designed, built, and tested end to end. Two voice agents, one quote-to-cash loop, wired to the Stripe API.</p>
+    </div>
+    <div class="legend">
+      <span class="tag live">Working build</span> deployed and tested
+      <span class="tag stripe">Stripe</span> real API calls, test mode
+      <span class="tag demo">Demo data</span> synthetic, no customer data
+      <span class="tag plan">Planned</span> not yet built
+    </div>
+
+    <div class="projects">
+
+      <!-- ===== PROJECT: QUINN ===== -->
+      <article class="project q" aria-labelledby="h-quinn">
+        <div class="ptop"><span class="kind">● Quoting agent</span><span class="tag live">Working build</span><span class="tag stripe">Stripe</span><span class="tag demo">Demo data</span></div>
+        <div>
+          <h3 id="h-quinn">Quinn</h3>
+          <div class="role">Voice quoting agent for a dealer order desk.</div>
+        </div>
+        <p class="desc">Takes an order over the phone and returns an <b>exact</b> quote in seconds, from a <b>deterministic pricing service</b>, never the model's arithmetic. Quinn turns it into a <b>formal Stripe Quote</b> with a number, expiry, and PDF. When the caller accepts, <b>Stripe generates the invoice and subscription</b> itself. Quinn applies <b>Stripe-validated promo codes</b>, changes plans with <b>Stripe proration</b>, and compares <b>usage-based print plans</b> against real meter data.</p>
+        <div class="demo">
+          <a class="cta" href="https://github.com/levi-kurtright/voice-quoting-agent" target="_blank" rel="noopener">See Quinn's code and tests ↗</a>
+          <small>Live voice demo on request. The agents create real Stripe test-mode records, so calls are by invitation.</small>
+        </div>
+        <div class="tcap">Sample call · text transcript</div>
+        <div class="transcript"><span class="you">Caller:</span> 50 sit-stand desks and 50 chairs, with install.
+<span class="sq">Quinn:</span>  That's $36,810 one-time plus $332.50 a month,
+        with 10% and 5% volume discounts applied.
+<span class="you">Caller:</span> Great, invoice it.
+<span class="sq">Quinn:</span>  Invoice G1O1OVID-0001 for $36,810.00 is on its way
+        with a pay-online link. Your toner subscription of
+        $332.50 a month is set up and billed monthly.</div>
+        <details class="case">
+          <summary>Technical case study</summary>
+          <div class="csgrid">
+            <div class="cs full"><h4>Problem</h4><p>Quoting is where revenue starts, and where it leaks. Prices get calculated by hand, discounts drift, approvals get skipped, and the hand-off from "yes" to an invoice is manual. The goal: let a dealer place an order in natural speech, keep every number exact, and turn the confirmed quote into billing without re-keying.</p></div>
+            <div class="cs"><h4>Architecture</h4><p>Caller ↔ ElevenLabs voice agent with four webhook tools. <code>calculate_quote</code> hits a stateless pricing service. <code>send_quote</code> creates and finalizes a Stripe Quote with one-time and recurring lines. <code>accept_quote</code> accepts it by number, and Stripe generates the invoice and subscription. <code>preview_subscription_change</code> and <code>change_subscription</code> handle mid-term plan changes with Stripe proration. <code>check_promo_code</code> validates a spoken code against Stripe promotion codes before <code>send_quote</code> applies it. <code>check_print_plan_options</code> prices the dealer's metered usage on both print plans, and <code>change_print_plan</code> schedules a switch with a Stripe subscription schedule. <code>create_invoice</code> is a direct-invoice fallback. Billing questions transfer to Riley.</p></div>
+            <div class="cs"><h4>Design decisions</h4><ul><li>The agent never does math; a service owns every number</li><li>Invoicing runs only after the caller confirms the quote</li><li>Quinn reads back Stripe's own invoice number and never invents one</li><li>One-time and recurring split at the source: invoice vs. subscription</li><li>Idempotent by quote ID: a repeated "yes" or a retried call returns the original invoice, never a second one</li><li>Stripe secret key lives server-side, never in the agent or the prompt</li><li>Plan changes are two-step: the caller hears Stripe's prorated amount before anything changes, and the confirmed change bills exactly that amount</li><li>No invented discounts: only codes that exist in Stripe and pass its rules (expiry, minimum order, first order only), one per quote, with redemptions tracked by Stripe</li><li>Print-plan switches start at the next billing period, so this month's pages bill at the rates the dealer agreed to; the recommendation is honest, including "stay where you are"</li></ul></div>
+            <div class="cs"><h4>Technologies</h4><div class="techrow"><span class="chip">ElevenLabs ElevenAgents</span><span class="chip st">Stripe Quotes</span><span class="chip st">Stripe Invoicing</span><span class="chip st">Stripe Subscriptions</span><span class="chip st">Proration</span><span class="chip st">Coupons &amp; promotion codes</span><span class="chip st">Billing meters</span><span class="chip st">Subscription schedules</span><span class="chip st">Stripe Tax</span><span class="chip st">Billing credits</span><span class="chip">Claude Haiku 5.5</span><span class="chip">Agent-to-agent transfer</span><span class="chip">TypeScript on Val Town</span><span class="chip">Webhook tool schemas</span><span class="chip">Claude Code</span></div></div>
+            <div class="cs"><h4>Testing <span class="tag live mini">Demonstrated</span></h4><ul><li>Standard order → prices with volume + extra discount</li><li>Discount push → routes to manager approval</li><li>250 desks → over $50k, flagged for approval</li><li>Unknown product → explains what it can quote</li><li>Mid-order change → confirms and re-prices</li><li>Confirmed order → Stripe invoice + $332.50/mo subscription; invoice paid on Stripe's hosted page</li><li>Same quote sent twice → same invoice returned; a later repeat → "already invoiced"</li><li>Send quote → QT-G1O1OVID-0002-1, $5,700 + $166.25/mo; accepted by spoken number → Stripe generated invoice + subscription</li><li>"5 → 8 printers" → previewed $99.69 prorated; confirmed change billed exactly $99.69; retry didn't double-charge</li><li>Plan decrease → prorated credit; cancel request → specialist follow-up</li><li>"Toner fifteen" → TONER15 checked in Stripe; quote QT-G1O1OVID-0005-1 accepted → invoice $1,671.31 after $294.94 off, redemption recorded</li><li>Below-minimum, expired, and first-order-only codes → declined with the reason, quote unchanged</li><li>50,700 pages projected → 25K plan saves ~$167/mo, switch scheduled for the next period; 15,000 pages → "stay on 5K"</li><li>Quote shipped to Austin 78704 → Stripe Tax adds $52.51 (8.25%), first invoice $689.01; no ZIP → Quinn asks for one</li><li>"$250 of print credit" → reads back Stripe&#39;s terms and waits for a yes before invoicing; $100 sold, paid, and granted by webhook</li></ul></div>
+            <div class="cs full"><h4>Current limitations <span class="tag plan mini">Current</span></h4><ul><li>Stripe runs in test mode; catalog, tiers, and approval thresholds are synthetic demo data</li><li>Accepted quotes aren't yet written to a CRM; single currency, validated on the scenarios listed</li></ul></div>
+            <div class="cs full"><h4>Future enhancements <span class="tag plan mini">Planned</span></h4><ul><li>Text the Stripe payment link to the caller during the call</li><li>Extend the Stripe webhooks to update Salesforce Quote &amp; Order records and notify the rep</li></ul></div>
+          </div>
+        </details>
+      </article>
+
+      <!-- ===== PROJECT: RILEY ===== -->
+      <article class="project r" aria-labelledby="h-riley">
+        <div class="ptop"><span class="kind">● Billing agent</span><span class="tag live">Working build</span><span class="tag stripe">Stripe</span><span class="tag demo">Demo data</span></div>
+        <div>
+          <h3 id="h-riley">Riley</h3>
+          <div class="role">Guardrail-first billing agent for a dealer network.</div>
+        </div>
+        <p class="desc">Answers dealer billing questions from a <b>governed knowledge base</b> and <b>live Stripe data</b>: invoice status, plans, and <b>metered print usage</b>, explained line by line. It issues <b>Stripe credit notes within policy</b>, <b>gets declined card payments paid without ever taking a card number</b>, <b>knows the limits of its authority</b>, and hands off the moment a call exceeds them.</p>
+        <div class="demo">
+          <a class="cta" href="https://github.com/levi-kurtright/elevenlabs-billing-voice-agent" target="_blank" rel="noopener">See Riley's code and tests ↗</a>
+          <small>Live voice demo on request. The agents create real Stripe test-mode records, so calls are by invitation.</small>
+        </div>
+        <div class="tcap">Sample call · text transcript</div>
+        <div class="transcript"><span class="you">Caller:</span> I'm dealer D-1042. What do I owe?
+<span class="sr">Riley:</span>  Downtown Office Dealer has 1 open invoice totaling
+        $332.50. The oldest, CPGODWZY-0002, is for $332.50
+        and is due December 6, 2026.
+<span class="you">Caller:</span> And is CPGODWZY-0001 paid?
+<span class="sr">Riley:</span>  Invoice CPGODWZY-0001 for $36,810.00 is paid in
+        full. Nothing is outstanding.</div>
+        <details class="case">
+          <summary>Technical case study</summary>
+          <div class="csgrid">
+            <div class="cs full"><h4>Problem</h4><p>Distributors field a steady stream of routine billing calls: "is my invoice paid," "what do I owe," "why this fee." An agent can resolve them in one call, but only if it answers from policy and live billing data, never guesses, and knows exactly when to stop.</p></div>
+            <div class="cs"><h4>Architecture</h4><p>Caller ↔ ElevenLabs voice agent grounded in a retrieval knowledge base of billing policies, plus a <code>check_invoice_status</code> webhook tool. The tool looks up an invoice by number, or a dealer's open invoices by dealer ID, email, or name, and returns a spoken summary built from Stripe's own fields, including a plain-language breakdown of metered usage. <code>check_print_usage</code> reads Stripe meter summaries and the next-invoice preview. <code>preview_credit</code> and <code>issue_credit</code> create Stripe credit notes after the caller confirms. <code>send_payment_link</code> has Stripe email its hosted payment page, <code>retry_card_payment</code> has Stripe retry a declined card after the owner updates it in Stripe&#39;s customer portal, and <code>check_print_credits</code> reads Stripe Billing credits. Stripe webhooks open and close payment follow-ups automatically.</p></div>
+            <div class="cs"><h4>Design decisions</h4><ul><li>Read-only by default; the one write is a credit note, and only within policy</li><li>Credits: preview first, issue on a clear yes, up to $100 per invoice by phone (counting earlier phone credits), never more than is owed, never a card refund</li><li>Reads back Stripe's status and amounts verbatim and never invents them; usage projections are labeled as estimates</li><li>Never takes card or bank numbers: Stripe emails its payment page only to the billing email on file, never to an address read out on the call</li><li>A card retry reads back the amount and runs only after a clear yes</li><li>Every "a specialist will follow up" is logged first as a tracked ticket with a reference number</li><li>Escalates upset callers or issues over $5,000</li><li>Read-only by design: order and plan-change requests transfer to Quinn</li></ul></div>
+            <div class="cs"><h4>Technologies</h4><div class="techrow"><span class="chip">ElevenLabs ElevenAgents</span><span class="chip st">Stripe Billing API</span><span class="chip st">Credit notes</span><span class="chip st">Billing meters</span><span class="chip st">Test clocks</span><span class="chip st">Automatic payment retries</span><span class="chip st">Customer portal</span><span class="chip st">Webhooks</span><span class="chip st">Billing credits</span><span class="chip st">Subscriptions lookup</span><span class="chip">Claude Haiku 5.5</span><span class="chip">Agent-to-agent transfer</span><span class="chip">Retrieval knowledge base</span><span class="chip">System-prompt guardrails</span></div></div>
+            <div class="cs"><h4>Testing <span class="tag live mini">Demonstrated</span></h4><ul><li>Late-fee question → explains 1.5% after 15 days</li><li>Price vs. quote → 60-day dispute window, fees pause</li><li>Caller offers a card → declines, points to portal</li><li>Frustrated $12k issue → offers specialist transfer</li><li>Invoice number → "paid in full," from Stripe</li><li>Dealer ID → open invoices, total owed, due date</li><li>"What's my plan?" → 10 at $33.25, $332.50/mo, next invoice Dec 6</li><li>Cracked cartridges, $30 → previewed $74.69 → $44.69, issued only after "go ahead"; a retry didn't credit twice</li><li>$150 request, or $60 + $50 on one invoice → over the $100 phone limit, specialist follow-up</li><li>"How much have we printed?" → 9,466 pages, $53.59 overage, Stripe estimate $102.59; "is that final?" → "no, it's an estimate"</li><li>Test-clock month-end → explains invoice SJ0HSXCP-0002: 13,600 pages, 5,000 included, 8,600 at 1.2¢ = $103.20</li><li>Card declined at renewal → explains the decline and Stripe's retry date, refuses a card number, logs follow-up FU-1003; after the card was updated, Stripe's retry recovered the payment</li><li>Owner updated the card → Riley read back $199.50, retried on a yes → paid; the webhook closed the follow-up</li><li>"I want to pay CPGODWZY-0002" → Stripe emailed its payment page to the billing contact on file</li><li>Prepaid credit → $100 available; Stripe's estimate falls to $0.00 "after $53.59 of your prepaid print credit"</li></ul></div>
+            <div class="cs full"><h4>Current limitations <span class="tag plan mini">Current</span></h4><ul><li>Billing status comes from Stripe in test mode; policy answers are limited to the demo knowledge base</li><li>Escalation is demonstrated conversationally; no live transfer is wired yet</li><li>English only; validated on the scenarios listed</li></ul></div>
+            <div class="cs full"><h4>Future enhancements <span class="tag plan mini">Planned</span></h4><ul><li>Transfer to a human specialist with full context (agent-to-agent transfer to Quinn is live)</li><li>Call the dealer when a card payment fails, triggered by the Stripe webhook</li><li>Notify the specialist team when a follow-up is logged</li></ul></div>
+          </div>
+        </details>
+      </article>
+
+      <!-- ===== ADD FUTURE PROJECTS AS <article class="project …"> HERE ===== -->
+      <article class="project more" aria-label="More projects">
+        <h3>More in the pipeline</h3>
+        <p>New builds land here: quote-to-cash automations, applied-AI delivery tools, and production agents.</p>
+        <a class="lnk" href="https://github.com/levi-kurtright" target="_blank" rel="noopener">See everything on GitHub ↗</a>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="quote-to-cash" class="q2c" aria-labelledby="h-q2c">
+    <div class="eyebrow">Quote-to-cash on Stripe</div>
+    <h2 id="h-q2c" style="font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:10px">From a phone call to a paid invoice</h2>
+    <p class="lede">Quinn and Riley are two halves of one revenue loop. Quinn turns a spoken order into <b>billing objects in Stripe</b>. Riley answers questions about them afterward. Every step below has run end to end against the Stripe API.</p>
+    <ol class="loop">
+      <li class="step"><span class="who q">Quinn</span><h3>Quote</h3><p><code>calculate_quote</code> prices the order with volume tiers and approval rules.</p><div class="proof">$36,810 + $332.50/mo</div></li>
+      <li class="step"><span class="who q">Quinn</span><h3>Quote &amp; accept</h3><p><code>send_quote</code> issues a Stripe Quote. <code>accept_quote</code> accepts it, and Stripe generates the invoice.</p><div class="proof">QT-G1O1OVID-0002-1 → G1O1OVID-0003</div></li>
+      <li class="step"><span class="who q">Quinn</span><h3>Subscribe</h3><p>Monthly lines become a Stripe subscription, so the toner plan bills itself.</p><div class="proof">$332.50 / month</div></li>
+      <li class="step"><span class="who s">Stripe</span><h3>Pay</h3><p>The dealer pays on Stripe's hosted invoice page, and Stripe marks the invoice paid.</p><div class="proof">CPGODWZY-0001 · paid</div></li>
+      <li class="step"><span class="who r">Riley</span><h3>Status</h3><p><code>check_invoice_status</code> and <code>check_subscription</code> answer "is it paid, what do I owe, what's my plan" from live Stripe data, read-only.</p><div class="proof">1 open · $332.50 due</div></li>
+    </ol>
+    <h3 class="loop-sub">After the first invoice</h3>
+    <ol class="loop" style="counter-reset:step 5;margin-top:12px">
+      <li class="step"><span class="who q">Quinn</span><h3>Discount</h3><p>A spoken promo code is checked against Stripe promotion codes and applied to the quote only if it passes Stripe's rules.</p><div class="proof">TONER15 · −$294.94</div></li>
+      <li class="step"><span class="who s">Stripe</span><h3>Meter</h3><p>Printers report pages as Stripe meter events. Stripe adds them up and bills overage on a graduated tier.</p><div class="proof">9,466 pages · $53.59 over</div></li>
+      <li class="step"><span class="who q">Quinn</span><h3>Right-size</h3><p>Prices the dealer's real usage on both print plans and schedules a switch for the next period with a subscription schedule.</p><div class="proof">5K → 25K · saves ~$167/mo</div></li>
+      <li class="step"><span class="who r">Riley</span><h3>Credit</h3><p>Damaged goods? Riley previews a Stripe credit note, issues it on a yes, and stays inside a $100 phone limit.</p><div class="proof">$74.69 → $44.69</div></li>
+      <li class="step"><span class="who s">Stripe</span><h3>Close the month</h3><p>A Stripe test clock runs a dealer through a full month. Stripe issues the usage invoice, and Riley explains it.</p><div class="proof">SJ0HSXCP-0002 · $103.20</div></li>
+    </ol>
+    <h3 class="loop-sub">Tax, prepay, recover, report</h3>
+    <ol class="loop" style="counter-reset:step 10;margin-top:12px">
+      <li class="step"><span class="who q">Quinn</span><h3>Tax</h3><p>Stripe Tax calculates sales tax from the ship-to ZIP code on every quote, and Quinn reads Stripe's tax and totals.</p><div class="proof">Austin 78704 · $52.51 tax</div></li>
+      <li class="step"><span class="who q">Quinn</span><h3>Prepay</h3><p>Prepaid print credit is sold as an invoice. When Stripe reports it paid, a webhook grants Stripe Billing credits that draw down on overage.</p><div class="proof">$100 credit → estimate $0.00</div></li>
+      <li class="step"><span class="who r">Riley</span><h3>Recover</h3><p>A declined renewal opens a follow-up by webhook. After the owner updates the card in Stripe's portal, Riley has Stripe retry it on the call.</p><div class="proof">past due → paid · follow-up closed</div></li>
+      <li class="step"><span class="who s">Stripe</span><h3>Report</h3><p>A live dashboard reads Stripe and the call logs: recurring revenue, receivables, failed and recovered payments, credits, and tax.</p><div class="proof">$1,378.50 MRR · 2 recovered</div></li>
+    </ol>
+    <p class="note">Stripe runs in test mode: real API calls and real objects, no real money. Payments use Stripe's published test card.</p>
+  </section>
+
+  <section id="quality" class="impact" aria-labelledby="h-quality">
+    <div class="eyebrow">Quality</div>
+    <h2 id="h-quality" style="font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:10px">Tested like production, not like a demo</h2>
+    <p class="lede">Agents that move money need regression tests. Every feature above ships with automated ElevenLabs tests, and every real call is scored afterward.</p>
+    <div class="impactgrid">
+      <article class="ic"><div class="lab">Regression suite</div><h3>15 automated tests across both agents</h3><p>Simulated callers run full conversations against live Stripe data, and tool-call tests check the exact action and parameters. Any tool that writes to Stripe is mocked, so a test can never charge, credit, or change a real record.</p></article>
+      <article class="ic"><div class="lab">Every call scored</div><h3>Post-call analysis on real calls</h3><p>Three pass/fail checks on every call: no money moves without a read-back and a clear yes, every number comes from a tool, and each request reaches the right agent. Four fields are extracted for reporting: dealer, intent, outcome, and dollars committed.</p></article>
+      <article class="ic"><div class="lab">Caught before callers did</div><h3>Bugs the tests found</h3><p>A transfer loop that bounced callers between agents. An agent that said "connecting you now" and never transferred. A model that spoke its own reasoning out loud after a hand-off, fixed by moving both agents to Claude Haiku 5.5. An agent that skipped Stripe's read-back and bought credit in one breath, fixed with an explicit stop-and-wait rule.</p></article>
+      <article class="ic"><div class="lab">Verified against Stripe</div><h3>Numbers reconciled to the source</h3><p>Every spoken figure was checked against Stripe: quote totals, prorations, credit balances, and usage overage matching Stripe's own invoice preview to the cent. Retries were tested for idempotency, so a repeated "yes" never bills twice.</p></article>
+    </div>
+  </section>
+
+  <section id="approach" class="approach" aria-labelledby="h-app">
+    <div class="eyebrow">How I build</div>
+    <h2 id="h-app" style="font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:10px">Conversation and calculation, kept separate</h2>
+    <p class="lede">Both agents share one principle: the model never invents the answer. Quinn calls a <b>deterministic pricing service</b> for every number and lets <b>Stripe</b> own the invoice and subscription. Riley retrieves answers from a <b>governed knowledge base</b> and <b>live Stripe data</b>, and hands off the moment a request exceeds its authority. It's the pattern I bring to enterprise AI: prototype fast, then ship with guardrails.</p>
+    <figure class="diagram">
+      <svg class="dg" viewBox="0 0 920 544" role="img" aria-label="A caller talks to the voice agent, Quinn or Riley on Claude Haiku 5.5. The agent calls a service layer for every number, and the service calls Stripe with idempotency keys. Quinn uses Stripe Quotes, promotion codes, Stripe Tax, proration, subscription schedules, billing meters and credit grants. Riley uses invoices, credit notes, meter usage, invoice previews, emailed payment links, the customer portal, automatic retries and an on-call card retry. Stripe webhooks flow back to open and close follow-ups, grant prepaid credit, log activity and feed a live revenue dashboard. Out-of-scope calls escalate to a person.">
+        <defs>
+          <marker id="dgA" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--mut)"/></marker>
+          <marker id="dgB" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--riley)"/></marker>
+          <marker id="dgS" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--stripe)"/></marker>
+        </defs>
+        <path class="e" d="M174,56 L379,56" marker-end="url(#dgA)"/>
+        <path class="e" d="M575,56 L741,56" marker-end="url(#dgA)"/>
+        <path class="e" d="M746,92 L580,92" marker-end="url(#dgA)"/>
+        <path class="e" d="M385,92 L179,92" marker-end="url(#dgA)"/>
+        <path class="e br" d="M430,120 L430,172 L180,172" marker-end="url(#dgB)"/>
+        <path class="e" d="M790,120 L790,234" marker-end="url(#dgA)"/>
+        <path class="e wh" d="M860,240 L860,126" marker-end="url(#dgS)"/>
+        <rect class="box" x="24" y="24" width="150" height="96" rx="16"/>
+        <rect class="box hi" x="385" y="24" width="190" height="96" rx="16"/>
+        <rect class="box" x="746" y="24" width="150" height="96" rx="16"/>
+        <rect class="box" x="24" y="146" width="150" height="52" rx="14"/>
+        <text class="t" x="99" y="68" text-anchor="middle">Caller</text>
+        <text class="s" x="99" y="88" text-anchor="middle">on the phone</text>
+        <text class="t" x="480" y="62" text-anchor="middle">Voice agent</text>
+        <text class="s" x="480" y="82" text-anchor="middle">Quinn · Riley</text>
+        <text class="s" x="480" y="99" text-anchor="middle">Claude Haiku 5.5</text>
+        <text class="t" x="821" y="58" text-anchor="middle">Service layer</text>
+        <text class="s" x="821" y="78" text-anchor="middle">pricing API</text>
+        <text class="s" x="821" y="95" text-anchor="middle">governed KB</text>
+        <text class="tb" x="99" y="169" text-anchor="middle">Human handoff</text>
+        <text class="s" x="99" y="187" text-anchor="middle">tracked follow-up</text>
+        <rect class="lm" x="255" y="48" width="42" height="15"/><text class="l" x="276" y="59" text-anchor="middle">voice</text>
+        <rect class="lm" x="628" y="48" width="60" height="15"/><text class="l" x="658" y="59" text-anchor="middle">tool call</text>
+        <rect class="lm" x="604" y="84" width="112" height="15"/><text class="l" x="660" y="95" text-anchor="middle">structured result</text>
+        <rect class="lm" x="240" y="84" width="72" height="15"/><text class="l" x="276" y="95" text-anchor="middle">reads back</text>
+        <rect class="lm" x="276" y="164" width="60" height="15"/><text class="l" x="306" y="175" text-anchor="middle" fill="var(--riley)">escalate</text>
+        <rect class="lm" x="734" y="152" width="112" height="15"/><text class="l" x="790" y="163" text-anchor="middle">API · idempotent</text>
+        <rect class="lm" x="826" y="196" width="68" height="15"/><text class="l st" x="860" y="207" text-anchor="middle">webhooks</text>
+        <rect class="sp" x="24" y="240" width="872" height="296" rx="18"/>
+        <text class="t st" x="44" y="268">Stripe Billing</text>
+        <text class="s" x="160" y="268">system of record · test mode</text>
+        <rect class="box" x="40" y="284" width="272" height="236" rx="14"/>
+        <text class="ch q" x="56" y="310">Quinn · quote to cash</text>
+        <circle class="dq" cx="61" cy="334" r="2.6"/><text class="it" x="71" y="338">Quotes → invoice + subscription</text>
+        <circle class="dq" cx="61" cy="357" r="2.6"/><text class="it" x="71" y="361">Promotion codes, validated</text>
+        <circle class="dq" cx="61" cy="380" r="2.6"/><text class="it" x="71" y="384">Stripe Tax on every quote</text>
+        <circle class="dq" cx="61" cy="403" r="2.6"/><text class="it" x="71" y="407">Mid-term changes with proration</text>
+        <circle class="dq" cx="61" cy="426" r="2.6"/><text class="it" x="71" y="430">Plan switches via schedules</text>
+        <circle class="dq" cx="61" cy="449" r="2.6"/><text class="it" x="71" y="453">Usage plans on billing meters</text>
+        <circle class="dq" cx="61" cy="472" r="2.6"/><text class="it" x="71" y="476">Prepaid credit (credit grants)</text>
+        <rect class="box" x="324" y="284" width="272" height="236" rx="14"/>
+        <text class="ch r" x="340" y="310">Riley · billing support</text>
+        <circle class="dr" cx="345" cy="334" r="2.6"/><text class="it" x="355" y="338">Invoice and balance lookup</text>
+        <circle class="dr" cx="345" cy="357" r="2.6"/><text class="it" x="355" y="361">Credit notes within policy</text>
+        <circle class="dr" cx="345" cy="380" r="2.6"/><text class="it" x="355" y="384">Print usage from billing meters</text>
+        <circle class="dr" cx="345" cy="403" r="2.6"/><text class="it" x="355" y="407">Next-invoice estimate</text>
+        <circle class="dr" cx="345" cy="426" r="2.6"/><text class="it" x="355" y="430">Stripe-emailed payment links</text>
+        <circle class="dr" cx="345" cy="449" r="2.6"/><text class="it" x="355" y="453">Customer portal for card updates</text>
+        <circle class="dr" cx="345" cy="472" r="2.6"/><text class="it" x="355" y="476">Automatic retry schedule</text>
+        <circle class="dr" cx="345" cy="495" r="2.6"/><text class="it" x="355" y="499">Card retry, only on a yes</text>
+        <rect class="box" x="608" y="284" width="272" height="236" rx="14"/>
+        <text class="ch s" x="624" y="310">After the call · webhooks</text>
+        <circle class="ds" cx="629" cy="334" r="2.6"/><text class="it" x="639" y="338">Payment failed → follow-up opened</text>
+        <circle class="ds" cx="629" cy="357" r="2.6"/><text class="it" x="639" y="361">Invoice paid → follow-up closed</text>
+        <circle class="ds" cx="629" cy="380" r="2.6"/><text class="it" x="639" y="384">Top-up paid → credit granted</text>
+        <circle class="ds" cx="629" cy="403" r="2.6"/><text class="it" x="639" y="407">Every event → activity log</text>
+        <circle class="ds" cx="629" cy="426" r="2.6"/><text class="it" x="639" y="430">Live revenue dashboard</text>
+        <circle class="ds" cx="629" cy="449" r="2.6"/><text class="it" x="639" y="453">Test clocks replay billing months</text>
+      </svg>
+      <figcaption>Every Stripe capability sits behind a tool, so the agent only talks: it reads back what Stripe returned and writes only after a clear yes. Webhooks close the loop after the call, without anyone on the phone.</figcaption>
+    </figure>
+    <div class="pillrow">
+      <div class="pill"><b>Grounded</b>Answers only from approved sources</div>
+      <div class="pill"><b>Deterministic</b>A service owns every number</div>
+      <div class="pill"><b>System of record</b>Stripe owns invoices and payments</div>
+      <div class="pill"><b>Human handoff</b>A person when it matters</div>
+    </div>
+  </section>
+
+  <section id="impact" class="impact" aria-labelledby="h-impact">
+    <div class="eyebrow">Enterprise impact</div>
+    <h2 id="h-impact" style="font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:10px">The same instinct, at enterprise scale</h2>
+    <p class="lede">The agents above are how I prototype today. The same approach has run through my enterprise programs since 2007, and now through my production AI work: find the real problem, prove it with something working, ship it with guardrails. A few examples, with customers kept anonymous:</p>
+    <div class="impactgrid">
+      <article class="ic"><div class="lab">Production AI</div><h3>A service agent live in production</h3><p>Designed and shipped an AI service agent for a global aviation software company, cutting customer wait times from hours in a queue to seconds. It runs on real-time data, with strict guardrails and a clear human handoff.</p></article>
+      <article class="ic"><div class="lab">Prototype → decision</div><h3>A four-week pilot that won a $30M+ program</h3><p>Built a working lead-to-cash pilot in four weeks, against a typical six to twelve months, that won a global manufacturer's decision to replace its legacy revenue system.</p></article>
+      <article class="ic"><div class="lab">Transformation at scale</div><h3>A 9,000-seller rollout</h3><p>Led Revenue Cloud architecture for a 9,000-seller rollout at a global technology company. The productivity gain was featured in a Dreamforce keynote.</p></article>
+      <article class="ic"><div class="lab">Delivery leadership</div><h3>$55M+ in programs recovered</h3><p>Brought three troubled enterprise programs worth more than $55M combined back on track, directing onshore and offshore teams of 90+, and developed 40+ architects along the way.</p></article>
+    </div>
+  </section>
+
+  <section id="about" class="about" aria-labelledby="h-about">
+    <div class="inner">
+      <div>
+        <div class="eyebrow">About</div>
+        <h2 id="h-about">Levi Kurtright</h2>
+        <p>Since 2007 I've led enterprise technology and transformation across the Salesforce ecosystem: <b>enterprise architecture, executive advisory, and complex, multimillion-dollar programs</b>. I've delivered programs worth more than $95M combined, recovered three troubled programs worth $55M+, led a 9,000-seller rollout featured in a Dreamforce keynote, and developed 40+ architects.</p>
+        <p>I work directly with C-suite and finance leaders to tie technology to business outcomes, and I still build. I use <b>Claude Code and OpenAI Codex every day</b> to design and ship applied AI, from a production service agent that cut customer wait times from hours to seconds, to Quinn and Riley above.</p>
+        <div class="disc">Demonstrations use synthetic data for a fictional distributor (“Summit Office Supply”). No customer information is used. Stripe runs in test mode, so no real money moves. Items marked <b>Planned</b> are not yet built.</div>
+      </div>
+      <nav class="links" aria-label="Links and projects">
+        <a href="https://www.linkedin.com/in/levikurtright/" target="_blank" rel="noopener">LinkedIn <span>profile</span></a>
+        <a href="https://github.com/levi-kurtright/voice-quoting-agent" target="_blank" rel="noopener">Quinn: source <span>code</span></a>
+        <a href="https://github.com/levi-kurtright/elevenlabs-billing-voice-agent" target="_blank" rel="noopener">Riley: source <span>code</span></a>
+        <a href="https://github.com/levi-kurtright" target="_blank" rel="noopener">All projects <span>github</span></a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Levi Kurtright · enterprise AI delivery &amp; transformation</div>
+    <div>Built with applied AI · demo data · Stripe test mode</div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
