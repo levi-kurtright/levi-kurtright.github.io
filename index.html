@@ -378,7 +378,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <h2 id="h-quality" style="font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:10px">Tested like production, not like a demo</h2>
     <p class="lede">Agents that move money need regression tests. Every feature above ships with automated ElevenLabs tests, and every real call is scored afterward.</p>
     <div class="impactgrid">
-      <article class="ic"><div class="lab">Regression suite</div><h3>15 automated tests across both agents</h3><p>Simulated callers run full conversations against live Stripe data, and tool-call tests check the exact action and parameters. Any tool that writes to Stripe is mocked, so a test can never charge, credit, or change a real record.</p></article>
+      <article class="ic"><div class="lab">Regression suite</div><h3>18 automated tests across both agents</h3><p>Simulated callers run full conversations against live Stripe data, and tool-call tests check the exact action and parameters. Any tool that writes to Stripe is mocked, so a test can never charge, credit, or change a real record.</p></article>
       <article class="ic"><div class="lab">Every call scored</div><h3>Post-call analysis on real calls</h3><p>Three pass/fail checks on every call: no money moves without a read-back and a clear yes, every number comes from a tool, and each request reaches the right agent. Four fields are extracted for reporting: dealer, intent, outcome, and dollars committed.</p></article>
       <article class="ic"><div class="lab">Caught before callers did</div><h3>Bugs the tests found</h3><p>A transfer loop that bounced callers between agents. An agent that said "connecting you now" and never transferred. A model that spoke its own reasoning out loud after a hand-off, fixed by moving both agents to Claude Haiku 5.5. An agent that skipped Stripe's read-back and bought credit in one breath, fixed with an explicit stop-and-wait rule.</p></article>
       <article class="ic"><div class="lab">Verified against Stripe</div><h3>Numbers reconciled to the source</h3><p>Every spoken figure was checked against Stripe: quote totals, prorations, credit balances, and usage overage matching Stripe's own invoice preview to the cent. Retries were tested for idempotency, so a repeated "yes" never bills twice.</p></article>
@@ -390,7 +390,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <h2 id="h-app" style="font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:10px">Conversation and calculation, kept separate</h2>
     <p class="lede">Both agents share one principle: the model never invents the answer. Quinn calls a <b>deterministic pricing service</b> for every number and lets <b>Stripe</b> own the invoice and subscription. Riley retrieves answers from a <b>governed knowledge base</b> and <b>live Stripe data</b>, and hands off the moment a request exceeds its authority. It's the pattern I bring to enterprise AI: prototype fast, then ship with guardrails.</p>
     <figure class="diagram">
-      <svg class="dg" viewBox="0 0 920 544" role="img" aria-label="A caller talks to the voice agent, Quinn or Riley on Claude Haiku 5.5. The agent calls a service layer for every number, and the service calls Stripe with idempotency keys. Quinn uses Stripe Quotes, promotion codes, Stripe Tax, proration, subscription schedules, billing meters and credit grants. Riley uses invoices, credit notes, meter usage, invoice previews, emailed payment links, the customer portal, automatic retries and an on-call card retry. Stripe webhooks flow back to open and close follow-ups, grant prepaid credit, log activity and feed a live revenue dashboard. Out-of-scope calls escalate to a person.">
+      <svg class="dg" viewBox="0 0 920 556" role="img" aria-label="A caller talks to the voice agent, Quinn or Riley on Claude Haiku 5.5. The agent calls a service layer for every number, and the service calls Stripe with idempotency keys. Quinn uses Stripe Quotes, promotion codes, Stripe Tax, proration, subscription schedules, billing meters, credit grants and a billing pause offered before any cancellation. Riley uses invoices, credit notes, meter usage, invoice previews, emailed payment links, the customer portal, automatic retries, an on-call card retry and plan features from Stripe Entitlements. Stripe webhooks flow back to open and close follow-ups, grant prepaid credit, log activity and feed a live revenue dashboard. Out-of-scope calls escalate to a person.">
         <defs>
           <marker id="dgA" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--mut)"/></marker>
           <marker id="dgB" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--riley)"/></marker>
@@ -424,10 +424,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <rect class="lm" x="276" y="164" width="60" height="15"/><text class="l" x="306" y="175" text-anchor="middle" fill="var(--riley)">escalate</text>
         <rect class="lm" x="734" y="152" width="112" height="15"/><text class="l" x="790" y="163" text-anchor="middle">API · idempotent</text>
         <rect class="lm" x="826" y="196" width="68" height="15"/><text class="l st" x="860" y="207" text-anchor="middle">webhooks</text>
-        <rect class="sp" x="24" y="240" width="872" height="296" rx="18"/>
+        <rect class="sp" x="24" y="240" width="872" height="308" rx="18"/>
         <text class="t st" x="44" y="268">Stripe Billing</text>
         <text class="s" x="160" y="268">system of record · test mode</text>
-        <rect class="box" x="40" y="284" width="272" height="236" rx="14"/>
+        <rect class="box" x="40" y="284" width="272" height="248" rx="14"/>
         <text class="ch q" x="56" y="310">Quinn · quote to cash</text>
         <circle class="dq" cx="61" cy="334" r="2.6"/><text class="it" x="71" y="338">Quotes → invoice + subscription</text>
         <circle class="dq" cx="61" cy="357" r="2.6"/><text class="it" x="71" y="361">Promotion codes, validated</text>
@@ -436,7 +436,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <circle class="dq" cx="61" cy="426" r="2.6"/><text class="it" x="71" y="430">Plan switches via schedules</text>
         <circle class="dq" cx="61" cy="449" r="2.6"/><text class="it" x="71" y="453">Usage plans on billing meters</text>
         <circle class="dq" cx="61" cy="472" r="2.6"/><text class="it" x="71" y="476">Prepaid credit (credit grants)</text>
-        <rect class="box" x="324" y="284" width="272" height="236" rx="14"/>
+        <circle class="dq" cx="61" cy="495" r="2.6"/><text class="it" x="71" y="499">Pause instead of cancel</text>
+        <rect class="box" x="324" y="284" width="272" height="248" rx="14"/>
         <text class="ch r" x="340" y="310">Riley · billing support</text>
         <circle class="dr" cx="345" cy="334" r="2.6"/><text class="it" x="355" y="338">Invoice and balance lookup</text>
         <circle class="dr" cx="345" cy="357" r="2.6"/><text class="it" x="355" y="361">Credit notes within policy</text>
@@ -446,7 +447,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <circle class="dr" cx="345" cy="449" r="2.6"/><text class="it" x="355" y="453">Customer portal for card updates</text>
         <circle class="dr" cx="345" cy="472" r="2.6"/><text class="it" x="355" y="476">Automatic retry schedule</text>
         <circle class="dr" cx="345" cy="495" r="2.6"/><text class="it" x="355" y="499">Card retry, only on a yes</text>
-        <rect class="box" x="608" y="284" width="272" height="236" rx="14"/>
+        <circle class="dr" cx="345" cy="518" r="2.6"/><text class="it" x="355" y="522">Plan features from Entitlements</text>
+        <rect class="box" x="608" y="284" width="272" height="248" rx="14"/>
         <text class="ch s" x="624" y="310">After the call · webhooks</text>
         <circle class="ds" cx="629" cy="334" r="2.6"/><text class="it" x="639" y="338">Payment failed → follow-up opened</text>
         <circle class="ds" cx="629" cy="357" r="2.6"/><text class="it" x="639" y="361">Invoice paid → follow-up closed</text>
